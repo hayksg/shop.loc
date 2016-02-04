@@ -1,5 +1,6 @@
+<?php use App\Components\FunctionLibrary as FL; ?>
+<?php $headTitle = 'Главная страница' ?>
 <?php include(ROOT . '/views/layouts/header.php') ?>
-
 <section>
     <div class="container">
         <div class="row">
@@ -37,7 +38,6 @@
                                         ID <?= (int)$product->id; ?>
                                         <a href="/product/<?= (int)$product->id; ?>"
                                            class="app-underline"
-
                                         >
                                             <?= htmlentities($product->name); ?>
                                         </a>
@@ -46,6 +46,9 @@
                                         <i class="fa fa-shopping-cart"></i>В корзину
                                     </a>
                                 </div>
+                                <?php if ($product->is_new) : ?>
+                                <img src="images/home/new.png" class="new" alt="" />
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>

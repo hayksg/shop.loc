@@ -6,9 +6,16 @@ use App\Models\ProductModel;
 
 class ProductController
 {
-    public function actionView()
+    public function actionView($id)
     {
-        require_once(ROOT . '/views/product/view.php');
+        $categories = CategoryModel::getAllUsingColumns();
+        $product = ProductModel::getById($id);
+
+        $view = new View;
+        $view->categories = $categories;
+        $view->product = $product;
+        $view->display('product/view.php');
+
         return true;
     }
 }

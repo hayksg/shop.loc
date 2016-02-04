@@ -4,6 +4,14 @@ namespace App\Models;
 
 use App\Components\AbstractModel;
 
+/**
+ * Class CategoryModel
+ *
+ * @property $name,
+ * @property $sort_order,
+ * @property $status,
+ */
+
 class CategoryModel extends AbstractModel
 {
     protected static $table = 'category';

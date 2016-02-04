@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Главная</title>
+    <title><?= isset($headTitle) ? $headTitle : 'Главная страница'; ?></title>
     <link href="/template/css/bootstrap.min.css" rel="stylesheet">
     <link href="/template/css/font-awesome.min.css" rel="stylesheet">
     <link href="/template/css/prettyPhoto.css" rel="stylesheet">
@@ -33,8 +33,8 @@
                 <div class="col-sm-6">
                     <div class="contactinfo">
                         <ul class="nav nav-pills">
-                            <li><a href="#"><i class="fa fa-phone"></i> +38 093 000 11 22</a></li>
-                            <li><a href="#"><i class="fa fa-envelope"></i> zinchenko.us@gmail.com</a></li>
+                            <li><a href="#" class="app-underline"><i class="fa fa-phone"></i> +38 093 000 11 22</a></li>
+                            <li><a href="#" class="app-underline"><i class="fa fa-envelope"></i> test@gmail.com</a></li>
                         </ul>
                     </div>
                 </div>
@@ -61,6 +61,7 @@
                 <div class="col-sm-8">
                     <div class="shop-menu pull-right">
                         <ul class="nav navbar-nav">
+                            <li><a href="/login"><i class="fa fa-user-plus"></i> Регистрация</a></li>
                             <li><a href="#"><i class="fa fa-shopping-cart"></i> Корзина</a></li>
                             <li><a href="#"><i class="fa fa-user"></i> Аккаунт</a></li>
                             <li><a href="#"><i class="fa fa-lock"></i> Вход</a></li>

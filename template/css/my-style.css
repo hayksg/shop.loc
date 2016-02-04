@@ -1,6 +1,57 @@
-.app-category:hover{
+i {
+    font-style: normal;
+}
+
+.app-orange-color {
+    color: #fe980f;
+}
+
+.app-grey-color {
+    color: #696763;
+}
+
+.app-red-color {
+    color: #d00;
+}
+
+.app-category:hover {
     color: #fe980f !important;
 }
-.app-underline:hover{
-    text-decoration: underline;
+
+.app-underline:hover {
+    text-decoration: underline !important;
+}
+
+.app-button {
+    margin-left: 0;
+    -webkit-transition: background 300ms, color 300ms;
+    transition: background 300ms, color 300ms;
+}
+
+.app-product-price, .app-product-amount {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.app-title-example {
+    margin: 50px 0 0;
+}
+
+.app-form input:focus::-webkit-input-placeholder{
+    color: transparent;
+}
+
+.app-form input:focus::-moz-placeholder{
+    color: transparent;
+}
+
+.app-form input[type="submit"]{
+    width: 200px;
+    -webkit-transition: background 300ms, color 300ms;
+    transition: background 300ms, color 300ms;
+}
+
+.app-ul{
+    padding: 0;
+    margin: 0 0 20px;
 }

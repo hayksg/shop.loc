@@ -3,7 +3,6 @@
 use App\Components\View;
 use App\Models\CategoryModel;
 use App\Models\ProductModel;
-use App\Models\ProductOrderModel;
 
 
 class SiteController

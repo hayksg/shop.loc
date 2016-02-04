@@ -42,9 +42,12 @@ abstract class AbstractModel
         }
     }
 
-    public static function getAllUsingColumns($desc = false, $limit = 0)
+    public static function getAllUsingColumns($desc = false, $limit = 0, $page = 0)
     {
         $class = get_called_class();
+
+        $page = intval($page);
+        $offset = ($page - 1) * $limit;
 
         $sql  = "SELECT * ";
         $sql .= "FROM ";
@@ -62,6 +65,9 @@ abstract class AbstractModel
         if ($limit) {
             $sql .= " LIMIT {$limit}";
         }
+        if ($offset > 0) {
+            $sql .= " OFFSET {$offset}";
+        }
 
         $db = new DB;
         $db->setClassName($class);
@@ -70,7 +76,7 @@ abstract class AbstractModel
         if ($result) {
             return $result;
         } else {
-            throw new ModelException('Ошибка базы данных');
+            return false;
         }
     }
 
@@ -95,6 +101,65 @@ abstract class AbstractModel
         }
     }
 
+    public static function getByCategoryId($categoryId, $limit = 0, $page, $status = 0)
+    {
+        $class = get_called_class();
+
+        $page = intval($page);
+        $offset = ($page - 1) * $limit;
+
+        $sql  = "SELECT * ";
+        $sql .= "FROM ";
+        $sql .= static::$table;
+        $sql .= " WHERE category_id = :category_id ";
+        if ($status) {
+            $sql .= "AND status = 1 ";
+        }
+        $sql .= "ORDER BY id DESC";
+        if ($limit) {
+            $sql .= " LIMIT {$limit}";
+        }
+        if ($offset > 0) {
+            $sql .= " OFFSET {$offset}";
+        }
+
+        $db = new DB;
+        $db->setClassName($class);
+        $result = $db->query($sql, [':category_id' => $categoryId]);
+
+        if ($result) {
+            return $result;
+        } else {
+            return false;
+        }
+    }
+
+    public static function getTotal($column = false, $value = false)
+    {
+        $class = get_called_class();
+
+        $sql  = "SELECT COUNT(id) ";
+        $sql .= "AS count ";
+        $sql .= "FROM ";
+        $sql .= static::$table;
+        if ($column && $value) {
+            $sql .= " WHERE ";
+            $sql .= $column . ' = :' . $column;
+        }
+        $sql .= " LIMIT 1";
+
+
+        $db = new DB;
+        $db->setClassName($class);
+        $result = $db->query($sql, [':' . $column => $value]);
+
+        if ($result) {
+            return $result[0]->count;
+        } else {
+            throw new ModelException('Ошибка базы данных');
+        }
+    }
+
     public static function getByColumn($column, $value)
     {
         $class = get_called_class();
@@ -114,12 +179,18 @@ abstract class AbstractModel
         if ($result) {
             return $result[0];
         } else {
-            throw new ModelException('Ошибка базы данных');
+            return false;
         }
     }
 
     protected function insert()
     {
+        if (isset($this->data['password'])) {
+            $password = $this->data['password'];
+            $password = password_hash($password, PASSWORD_DEFAULT);
+            $this->data['password'] = $password;
+        }
+
         $params = [];
         $keys = array_keys($this->data);
 
@@ -139,7 +210,7 @@ abstract class AbstractModel
         if ($result) {
             return $db->lastInsertId();
         } else {
-            throw new ModelException('Ошибка базы данных');
+            throw new ModelException('Произошла ошибка при добавлении');
         }
     }
 
@@ -171,7 +242,7 @@ abstract class AbstractModel
         if ($result) {
             return $result;
         } else {
-            throw new ModelException('Ошибка базы данных');
+            throw new ModelException('Произошла ошибка при редактировании');
         }
     }
 
@@ -181,6 +252,23 @@ abstract class AbstractModel
             return $this->update($newDate);
         } else {
             return $this->insert();
+        }
+    }
+
+    public function delete()
+    {
+        $sql  = "DELETE FROM ";
+        $sql .= static::$table;
+        $sql .= " WHERE id = :id ";
+        $sql .= "LIMIT 1";
+
+        $db = new DB;
+        $result = $db->execute($sql, [':id' => $this->data['id']]);
+
+        if ($result) {
+            return $result;
+        } else {
+            throw new ModelException('Произошла ошибка при удалении');
         }
     }
 }

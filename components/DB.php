@@ -4,6 +4,7 @@ namespace App\Components;
 
 use \PDO;
 use \PDOException;
+use App\Components\View;
 
 class DB
 {
@@ -16,8 +17,18 @@ class DB
         $params = include($paramsPath);
         $dsn = "mysql:host={$params['host']};dbname={$params['dbname']}";
 
-        $this->db = new PDO($dsn, $params['user'], $params['password']);
-        $this->db->exec("SET NAMES 'utf-8'");
+        try {
+            $this->db = new PDO($dsn, $params['user'], $params['password']);
+            $this->db->exec("SET NAMES 'utf-8'");
+        } catch (PDOException $e) {
+            $logger = Logger::getInstance();
+            $logger->setLog($e->getFile(), $e->getLine(), $e->getMessage());
+
+            $view = new View;
+            $view->error = "Нет соединения с БД";
+            $view->display('error.php');
+            die;
+        }
     }
 
     public function setClassName($className) {

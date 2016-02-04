@@ -3,6 +3,7 @@
 use App\Components\Router;
 use App\Components\View;
 use App\Components\Logger;
+use App\Components\FunctionLibrary as FL;
 
 // Front Controller
 
@@ -18,6 +19,7 @@ require_once(ROOT . '/components/autoload.php');
 try {
     $router = new Router;
     $router->run();
+    FL::deleteLink();
 } catch (Exception $e) {
     $logger = Logger::getInstance();
     $logger->setLog($e->getFile(), $e->getLine(), $e->getMessage());
