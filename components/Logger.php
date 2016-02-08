@@ -5,7 +5,7 @@ namespace App\Components;
 
 class Logger
 {
-    const LOG_NAME = ROOT . '/logs/log.txt';
+    const LOG_NAME = '/logs/log.txt';
     protected static $instance = null;
 
     private function __construct(){}
@@ -23,13 +23,13 @@ class Logger
     public function setLog($file, $line, $message)
     {
         $str = $file . '|' . $line . '|' . $message;
-        file_put_contents(self::LOG_NAME, $str);
+        file_put_contents(ROOT . self::LOG_NAME, $str);
     }
 
     public function getLog()
     {
-        if (is_file(self::LOG_NAME)) {
-            $str = file_get_contents(self::LOG_NAME);
+        if (is_file(ROOT . self::LOG_NAME)) {
+            $str = file_get_contents(ROOT . self::LOG_NAME);
 
             $segments = explode('|', $str);
             $output = 'Имя файла: ' . $segments[0] . '<br>' .
@@ -43,8 +43,8 @@ class Logger
 
     public function deleteLog()
     {
-        if (is_file(self::LOG_NAME)) {
-            unlink(self::LOG_NAME);
+        if (is_file(ROOT . self::LOG_NAME)) {
+            unlink(ROOT . self::LOG_NAME);
         }
     }
 }

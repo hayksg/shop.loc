@@ -37,21 +37,49 @@ i {
     margin: 50px 0 0;
 }
 
-.app-form input:focus::-webkit-input-placeholder{
+.app-form ::-webkit-input-placeholder {
+    color: #555;
+    font-weight: normal;
+}
+
+.app-form :focus::-webkit-input-placeholder {
     color: transparent;
 }
 
-.app-form input:focus::-moz-placeholder{
+.app-form ::-moz-placeholder {
+    color: #333;
+    font-weight: normal;
+}
+
+.app-form :focus::-moz-placeholder {
     color: transparent;
 }
 
-.app-form input[type="submit"]{
+.app-form input[type="submit"] {
     width: 200px;
     -webkit-transition: background 300ms, color 300ms;
     transition: background 300ms, color 300ms;
 }
 
-.app-ul{
+.app-form label {
+    margin: 10px 0 30px;
+}
+
+.app-form textarea {
+    height: 200px;
+    margin:0 0 10px;
+    padding: 10px;
+    font-weight: normal;
+}
+
+.app-form input[type="checkbox"] {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin:0 15px 0 0;
+}
+
+.app-ul {
     padding: 0;
     margin: 0 0 20px;
 }

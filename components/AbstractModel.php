@@ -1,6 +1,9 @@
 <?php
 namespace App\Components;
 
+use App\Components\FunctionLibrary as FL;
+use App\Components\Session;
+
 abstract class AbstractModel
 {
     protected static $table;
@@ -75,6 +78,26 @@ abstract class AbstractModel
 
         if ($result) {
             return $result;
+        } else {
+            return false;
+        }
+    }
+
+    public static function checkRegister($email, $password, $remember = '')
+    {
+        $user = self::getByColumn('email', $email);
+
+        if ($user) {
+            if (password_verify($password, $user->password)) {
+                if ($remember == 'true') {
+                    $key = 'avtobus12troleibus23h23';
+                    $encrypted = FL::encrypted($email, $key);
+                    setcookie('user', $encrypted, 0x7FFFFFFF, '/');
+                }
+                return $user;
+            } else {
+                return false;
+            }
         } else {
             return false;
         }
@@ -183,7 +206,7 @@ abstract class AbstractModel
         }
     }
 
-    protected function insert()
+    protected function insert($rememberUser)
     {
         if (isset($this->data['password'])) {
             $password = $this->data['password'];
@@ -208,16 +231,32 @@ abstract class AbstractModel
         $result = $db->execute($sql, $params);
 
         if ($result) {
+            if ($rememberUser) {
+                // Вход с помощью сессии
+                // $user = self::getByColumn('email', $this->data['email']);
+                // Session::createSession('user', $user);
+
+                // Вход с помощью cookie
+                $key = 'avtobus12troleibus23h23';
+                $encrypted = FL::encrypted($this->data['email'], $key);
+                setcookie('user', $encrypted, 0x7FFFFFFF, '/');
+            }
             return $db->lastInsertId();
         } else {
             throw new ModelException('Произошла ошибка при добавлении');
         }
     }
 
-    protected function update($newDate)
+    protected function update($newDate, $rememberUser)
     {
         $arr = [];
         $params = [];
+
+        if (isset($this->data['password'])) {
+            $password = $this->data['password'];
+            $password = password_hash($password, PASSWORD_DEFAULT);
+            $this->data['password'] = $password;
+        }
 
         foreach ($this->data as $key => $value) {
             $params[':' . $key] = $value;
@@ -240,18 +279,28 @@ abstract class AbstractModel
         $result = $db->execute($sql, $params);
 
         if ($result) {
+            if ($rememberUser) {
+                // Вход с помощью сессии
+                // $user = self::getByColumn('email', $this->data['email']);
+                // Session::createSession('user', $user);
+
+                // Вход с помощью cookie
+                $key = 'avtobus12troleibus23h23';
+                $encrypted = FL::encrypted($this->data['email'], $key);
+                setcookie('user', $encrypted, 0x7FFFFFFF, '/');
+            }
             return $result;
         } else {
             throw new ModelException('Произошла ошибка при редактировании');
         }
     }
 
-    public function save($newDate = false)
+    public function save($newDate = false, $rememberUser = false)
     {
         if (isset($this->id)) {
-            return $this->update($newDate);
+            return $this->update($newDate, $rememberUser);
         } else {
-            return $this->insert();
+            return $this->insert($rememberUser);
         }
     }
 

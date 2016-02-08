@@ -26,11 +26,11 @@
                 </div>
                 <div class="col-sm-9 padding-right">
                     <div class="features_items"><!--features_items-->
-                        <h2 class="title text-center">Авторизация</h2>
+                        <h2 class="title text-center">Редактор</h2>
                         <div class="row">
                             <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
                                 <div class="signup-form">
-                                    <h2>Вход на сайт</h2>
+                                    <h2>Редактирование данных</h2>
                                     <?php if (!empty($errors)) : ?>
                                         <ul class="app-ul">
                                             <?php foreach ($errors as $error) : ?>
@@ -38,13 +38,10 @@
                                             <?php endforeach; ?>
                                         </ul>
                                     <?php endif; ?>
-                                    <form action="/login" method="post" class="app-form">
-                                        <input type="email" name="email" value="<?= htmlentities($email); ?>" placeholder="Email">
+                                    <form action="/cabinet/edit/<?= (int)$id ?>" method="post" class="app-form">
+                                        <input type="text" name="name" value="<?= htmlentities($user->name); ?>" placeholder="Имя">
                                         <input type="password" name="password" value="<?= htmlentities($password); ?>" placeholder="Пароль">
-                                        <label>
-                                            <input type="checkbox" name="remember" value="true"><i class="app-grey-color">Запомнить меня</i>
-                                        </label>
-                                        <input type="submit" name="submit" class="btn btn-default add-to-cart" value="Войти">
+                                        <input type="submit" name="submit" class="btn btn-default add-to-cart" value="Редактировать">
                                     </form>
                                 </div>
                             </div>

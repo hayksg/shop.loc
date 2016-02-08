@@ -5,7 +5,7 @@ namespace App\Components;
 class View
 {
     protected $data = [];
-    const PATH = ROOT . '/views/';
+    const PATH = '/views/';
 
     public function __set($key, $value)
     {
@@ -22,7 +22,7 @@ class View
         foreach ($this->data as $key => $value) {
             $$key = $value;
         }
-
-        require_once(self::PATH . $template);
+        
+        require_once(ROOT . self::PATH . $template);
     }
 }

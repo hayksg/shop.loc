@@ -4,7 +4,7 @@ function appAutoload($classPath)
 {
     defined('DS') ? null : define('DS', DIRECTORY_SEPARATOR);
 
-    $pathArray = explode(DS, $classPath);
+    $pathArray = explode('\\', $classPath);
     $className = array_pop($pathArray);
     $pathString = implode(DS, $pathArray);
 

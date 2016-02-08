@@ -26,26 +26,28 @@
                 </div>
                 <div class="col-sm-9 padding-right">
                     <div class="features_items"><!--features_items-->
-                        <h2 class="title text-center">Авторизация</h2>
+                        <h2 class="title text-center">Контакты</h2>
                         <div class="row">
                             <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
                                 <div class="signup-form">
-                                    <h2>Вход на сайт</h2>
-                                    <?php if (!empty($errors)) : ?>
-                                        <ul class="app-ul">
-                                            <?php foreach ($errors as $error) : ?>
-                                                <li class="app-red-color"><?= htmlentities($error); ?></li>
-                                            <?php endforeach; ?>
-                                        </ul>
+                                    <h2>Чтобы связаться с нами заполните пожалуйста форму</h2>
+                                    <?php if ($result) : ?>
+                                        <h4 class="app-grey-color">Письмо отправлено!</h4>
+                                    <?php else : ?>
+                                        <?php if (!empty($errors)) : ?>
+                                            <ul class="app-ul">
+                                                <?php foreach ($errors as $error) : ?>
+                                                    <li class="app-red-color"><?= htmlentities($error); ?></li>
+                                                <?php endforeach; ?>
+                                            </ul>
+                                        <?php endif; ?>
+                                        <form action="/contacts" method="post" class="app-form">
+                                            <input type="email" name="email" value="<?= htmlentities($email) ?>" placeholder="Email">
+                                            <input type="text" name="subject" value="<?= htmlentities($subject) ?>" placeholder="Тема сообщения">
+                                            <textarea name="message" placeholder="Текст сообщения"><?= htmlentities($message) ?></textarea>
+                                            <input type="submit" name="submit" class="btn btn-default add-to-cart" value="Отправить">
+                                        </form>
                                     <?php endif; ?>
-                                    <form action="/login" method="post" class="app-form">
-                                        <input type="email" name="email" value="<?= htmlentities($email); ?>" placeholder="Email">
-                                        <input type="password" name="password" value="<?= htmlentities($password); ?>" placeholder="Пароль">
-                                        <label>
-                                            <input type="checkbox" name="remember" value="true"><i class="app-grey-color">Запомнить меня</i>
-                                        </label>
-                                        <input type="submit" name="submit" class="btn btn-default add-to-cart" value="Войти">
-                                    </form>
                                 </div>
                             </div>
                         </div>

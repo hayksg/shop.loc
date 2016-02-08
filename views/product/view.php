@@ -58,7 +58,7 @@
                                 <p><b>Состояние:</b> Новое</p>
                                 <p><b>Производитель:</b> <?= htmlentities($product->brand) ?></p>
                                 <br>
-                                <button type="button" class="btn btn-default cart app-button">
+                                <button type="button" class="btn btn-default cart app-button app-btn-orange">
                                     <i class="fa fa-shopping-cart"></i>
                                     В корзину
                                 </button>
