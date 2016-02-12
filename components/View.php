@@ -22,7 +22,7 @@ class View
         foreach ($this->data as $key => $value) {
             $$key = $value;
         }
-        
+
         require_once(ROOT . self::PATH . $template);
     }
 }

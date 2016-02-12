@@ -26,13 +26,18 @@ abstract class AbstractModel
         return isset($this->data[$key]);
     }
 
-    public static function getAll()
+    public static function getAll($stringIds = false)
     {
         $class = get_called_class();
 
         $sql  = "SELECT * ";
         $sql .= "FROM ";
         $sql .= static::$table;
+        if ($stringIds) {
+            $sql .= " WHERE id IN(";
+            $sql .= $stringIds;
+            $sql .= ")";
+        }
         $sql .= " ORDER BY id DESC";
 
         $db = new DB;

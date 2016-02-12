@@ -26,26 +26,8 @@
                 </div>
                 <div class="col-sm-9 padding-right">
                     <div class="features_items"><!--features_items-->
-                        <h2 class="title text-center">Редактор</h2>
-                        <div class="row">
-                            <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
-                                <div class="signup-form">
-                                    <h2>Редактирование данных</h2>
-                                    <?php if (!empty($errors)) : ?>
-                                        <ul class="app-ul">
-                                            <?php foreach ($errors as $error) : ?>
-                                                <li class="app-red-color"><?= htmlentities($error); ?></li>
-                                            <?php endforeach; ?>
-                                        </ul>
-                                    <?php endif; ?>
-                                    <form action="/cabinet/edit/<?= (int)$id ?>" method="post" class="app-form">
-                                        <input type="text" name="name" value="<?= htmlentities($user->name); ?>" placeholder="Имя">
-                                        <input type="password" name="password" value="<?= htmlentities($password); ?>" placeholder="Пароль">
-                                        <input type="submit" name="submit" class="btn btn-default app-button-submit" value="Редактировать">
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
+                        <h2 class="title text-center">Заказ</h2>
+
                     </div><!--features_items-->
                 </div>
             </div>

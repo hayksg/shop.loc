@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Controllers;
+
 use App\Components\View;
 use App\Components\Session;
 use App\Components\Cookie;

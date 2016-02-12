@@ -42,7 +42,7 @@
                                     <input type="text" name="name" value="<?= htmlentities($name); ?>" placeholder="Имя">
                                     <input type="email" name="email" value="<?= htmlentities($email); ?>" placeholder="Email">
                                     <input type="password" name="password" value="<?= htmlentities($password); ?>" placeholder="Пароль">
-                                    <input type="submit" name="submit" class="btn btn-default add-to-cart" value="Зарегистрировать">
+                                    <input type="submit" name="submit" class="btn btn-default app-button-submit" value="Зарегистрировать">
                                 </form>
                             </div>
                         </div>

@@ -12,6 +12,8 @@ function appAutoload($classPath)
         $pathFile = ROOT . DS . 'components' . DS;
     } elseif ($pathString == 'App' . DS . 'Models') {
         $pathFile = ROOT . DS . 'models' . DS;
+    } elseif ($pathString == 'App' . DS . 'Controllers') {
+        $pathFile = ROOT . DS . 'controllers' . DS;
     }
 
     $file = $pathFile . $className . '.php';

@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Controllers;
+
 use App\Components\View;
 use App\Components\FunctionLibrary as FL;
 use App\Models\CategoryModel;
@@ -36,7 +38,7 @@ class SiteController
         if (isset($_POST['submit'])) {
             $email   = FL::clearStr($_POST['email']);
             $subject = FL::clearStr($_POST['subject']);
-            $message = FL::clearStr($_POST['message']);
+            $message = nl2br(FL::clearStr($_POST['message']));
 
             if (!FL::isEmail($email)) {
                 $errors[] = 'Некорректный email';
@@ -66,6 +68,17 @@ class SiteController
         $view->errors     = $errors;
         $view->result     = $result;
         $view->display('site/contact.php');
+
+        return true;
+    }
+
+    public function actionAbout()
+    {
+        $categories = CategoryModel::getAllUsingColumns();
+
+        $view = new View;
+        $view->categories = $categories;
+        $view->display('site/about.php');
 
         return true;
     }

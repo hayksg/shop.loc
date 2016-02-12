@@ -1,4 +1,3 @@
-<?php use App\Models\UserModel; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -62,8 +61,12 @@
                 <div class="col-sm-8">
                     <div class="shop-menu pull-right">
                         <ul class="nav navbar-nav">
-                            <li><a href="#"><i class="fa fa-shopping-cart"></i> Корзина</a></li>
-                            <?php if (UserModel::isUser('user')) : ?>
+                            <li>
+                                <a href="/cart"><i class="fa fa-shopping-cart"></i> Корзина
+                                    [ <i class="app-orange-color countProductsInCart"><?= \App\Models\CartModel::countProductsInCart() ?></i>]
+                                </a>
+                            </li>
+                            <?php if (\App\Models\UserModel::isUser('user')) : ?>
                                 <li><a href="/cabinet"><i class="fa fa-user"></i> Аккаунт</a></li>
                                 <li><a href="/logout"><i class="fa fa-unlock"></i> Выход</a></li>
                             <?php else : ?>

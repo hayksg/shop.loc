@@ -30,7 +30,7 @@
                     <div class="row">
                         <div class="col-sm-5">
                             <div class="view-product">
-                                <img src="/template<?= htmlentities($product->image) ?>" alt="image">
+                                <img src="/template<?= htmlentities($product->image) ?>" class="img-responsive" alt="image">
                             </div>
                         </div>
                         <div class="col-sm-7">
@@ -47,7 +47,10 @@
                                 </p>
                                 <span>
                                     <label>Количество:</label>
-                                    <input type="text" value="3">
+                                    <input type="text"
+                                           class="app-product-count"
+                                           value="<?= \App\Components\Session::getSessionValue('products', $product->id) ?>"
+                                    >
                                 </span>
                                 <p><b>Общая сумма:</b>
                                     <i class="app-orange-color">US $
@@ -58,10 +61,12 @@
                                 <p><b>Состояние:</b> Новое</p>
                                 <p><b>Производитель:</b> <?= htmlentities($product->brand) ?></p>
                                 <br>
-                                <button type="button" class="btn btn-default cart app-button app-btn-orange">
-                                    <i class="fa fa-shopping-cart"></i>
-                                    В корзину
-                                </button>
+                                <a href="#"
+                                   class="btn btn-default add-to-cart add-to-cart-one app-btn-orange app-button cart"
+                                   data-id="<?= (int)$product->id; ?>"
+                                >
+                                    <i class="fa fa-shopping-cart"></i>В корзину
+                                </a>
                             </div><!--/product-information-->
                         </div>
                     </div>

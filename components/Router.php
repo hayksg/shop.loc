@@ -33,6 +33,7 @@ class Router
                 // Если есть совпадения находим контроллер, action, параметр(ы)
                 $segments = explode('/', $internalRoute);
                 $controllerName = ucfirst(array_shift($segments)) . 'Controller';
+                $controllerName = '\App\Controllers\\' . $controllerName;
                 $actionName = 'action' . ucfirst(array_shift($segments));
                 $parameters = $segments;
 

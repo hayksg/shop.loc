@@ -83,3 +83,47 @@ i {
     padding: 0;
     margin: 0 0 20px;
 }
+
+.app-box {
+    padding: 0 30px;
+}
+
+.app-blog-img-box {
+    //width: 258px;
+    //width: 35%;
+    //height: 117px;
+    //height: 25%;
+    //display: inline-block;
+    //float: left;
+}
+
+.app-blog-img-box img {
+    width: 100%;
+    height: 100%;
+}
+
+.app-blog-description-box {
+
+    padding: 0 20px;
+    //margin: 0 0 0 30px;
+    height: 117px;
+    //display: inline-block;
+    overflow: auto;
+}
+
+.app-button-submit {
+    background: #fe980f;
+    color: #fff;
+    border: 0 none;
+    border-radius: 0;
+    font-family: "Roboto",sans-serif;
+}
+
+.app-button-submit:hover {
+    background: #fe980f;
+    color: #fff;
+}
+
+.app-block {
+    padding: 0 15px;
+}

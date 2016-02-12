@@ -1,5 +1,5 @@
 <?php use App\Components\FunctionLibrary as FL; ?>
-<?php $headTitle = 'Страница регистрации' ?>
+<?php $headTitle = 'Страница контакта' ?>
 <?php include(ROOT . '/views/layouts/header.php') ?>
     <section>
         <div class="container">
@@ -45,7 +45,7 @@
                                             <input type="email" name="email" value="<?= htmlentities($email) ?>" placeholder="Email">
                                             <input type="text" name="subject" value="<?= htmlentities($subject) ?>" placeholder="Тема сообщения">
                                             <textarea name="message" placeholder="Текст сообщения"><?= htmlentities($message) ?></textarea>
-                                            <input type="submit" name="submit" class="btn btn-default add-to-cart" value="Отправить">
+                                            <input type="submit" name="submit" class="btn btn-default app-button-submit" value="Отправить">
                                         </form>
                                     <?php endif; ?>
                                 </div>

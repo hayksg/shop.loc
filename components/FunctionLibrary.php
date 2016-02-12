@@ -100,4 +100,65 @@ class FunctionLibrary
 
         return $decrypted;
     }
+
+    public static function getDate($dateValue, $timeValue = false)
+    {
+        $dt = new \DateTime($dateValue);
+        if ($timeValue) {
+            $dateString = $dt->format('d,F,Y,H,i,s');
+        } else {
+            $dateString = $dt->format('d,F,Y');
+        }
+
+        $dateArray = explode(',', $dateString);
+
+        switch ($dateArray[1]) {
+            case 'January':
+                $month = 'Января';
+                break;
+            case 'February':
+                $month = 'Февраля';
+                break;
+            case 'March':
+                $month = 'Марта';
+                break;
+            case 'April':
+                $month = 'Апреля';
+                break;
+            case 'May':
+                $month = 'Мая';
+                break;
+            case 'June':
+                $month = 'Июня';
+                break;
+            case 'July':
+                $month = 'Июля';
+                break;
+            case 'August':
+                $month = 'Августа';
+                break;
+            case 'September':
+                $month = 'Сентября';
+                break;
+            case 'October':
+                $month = 'Октября';
+                break;
+            case 'November':
+                $month = 'Ноября';
+                break;
+            case 'December':
+                $month = 'Декабря';
+                break;
+        }
+
+        $result = $dateArray[0] . ' ' . $month . ' ' . $dateArray[2];
+
+        if ($timeValue) {
+            $output = $result . ' ' . $dateArray[3] . ':' . $dateArray[4] . ':' . $dateArray[5];
+        } else {
+            $output = $result;
+        }
+
+        return $output;
+    }
 }

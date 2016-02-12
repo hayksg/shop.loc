@@ -1,5 +1,5 @@
 <?php use App\Components\FunctionLibrary as FL; ?>
-<?php $headTitle = 'Страница регистрации' ?>
+<?php $headTitle = 'Все блоги' ?>
 <?php include(ROOT . '/views/layouts/header.php') ?>
     <section>
         <div class="container">
@@ -26,27 +26,28 @@
                 </div>
                 <div class="col-sm-9 padding-right">
                     <div class="features_items"><!--features_items-->
-                        <h2 class="title text-center">Авторизация</h2>
+                        <h2 class="title text-center">Блог</h2>
                         <div class="row">
-                            <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
-                                <div class="signup-form">
-                                    <h2>Вход на сайт</h2>
-                                    <?php if (!empty($errors)) : ?>
-                                        <ul class="app-ul">
-                                            <?php foreach ($errors as $error) : ?>
-                                                <li class="app-red-color"><?= htmlentities($error); ?></li>
-                                            <?php endforeach; ?>
-                                        </ul>
-                                    <?php endif; ?>
-                                    <form action="/login" method="post" class="app-form">
-                                        <input type="email" name="email" value="<?= htmlentities($email); ?>" placeholder="Email">
-                                        <input type="password" name="password" value="<?= htmlentities($password); ?>" placeholder="Пароль">
-                                        <label>
-                                            <input type="checkbox" name="remember" value="true"><i class="app-grey-color">Запомнить меня</i>
-                                        </label>
-                                        <input type="submit" name="submit" class="btn btn-default app-button-submit" value="Войти">
-                                    </form>
+                            <div class="col-sm-12 app-box">
+                            <?php foreach ($blogs as $blog) : ?>
+                            <div>
+                                <h3 class="app-grey-color"><?= htmlentities($blog->title); ?></h3>
+                                <p class="app-grey-color"><i class="fa fa-calendar"></i> <?= htmlentities(FL::getDate($blog->dt)) ?></p>
+                                <br>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-5 col-sm-6">
+                                        <img src="/template<?= htmlentities($blog->image); ?>" class="img-responsive">
+                                        <br>
+                                    </div>
+                                    <div class="col-ld-8 col-md-7 col-sm-6 app-blog-description-box app-grey-color">
+                                        <?= htmlentities($blog->description); ?>
+                                    </div>
                                 </div>
+                                <br>
+                                <p><a href="/blog/view/<?= (int)$blog->id ?>">Читать дальше <i class="fa fa-angle-double-right"></i></a></p>
+                                <hr>
+                            </div>
+                            <?php endforeach; ?>
                             </div>
                         </div>
                     </div><!--features_items-->

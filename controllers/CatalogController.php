@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Controllers;
+
 use App\Components\View;
 use App\Components\Pagination;
 use App\Components\FunctionLibrary as FL;
