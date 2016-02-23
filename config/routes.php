@@ -22,7 +22,9 @@ return array(
     // for blog
     'blog/view/([0-9]+)' => 'blog/view/$1', // actionView in BlogController
     'blog' => 'blog/index', // actionIndex in BlogController
-    // for main page
+    // for admin
+    'admin' => 'admin/index', // actionIndex in AdminController
+    // for main
     'about' => 'site/about', // actionAbout in SiteController
     'contacts' => 'site/contact', // actionContact in SiteController
     '' => 'site/index', // actionIndex in SiteController

@@ -14,7 +14,7 @@ class BlogController
         $showBlogs = 6;
 
         $categories = CategoryModel::getAllUsingColumns();
-        $blogs   = BlogModel::getAll();
+        $blogs = BlogModel::getAll();
 
         $view = new View;
         $view->categories = $categories;
@@ -28,10 +28,11 @@ class BlogController
     {
         $categories = CategoryModel::getAllUsingColumns();
 
+        $blog = BlogModel::getById($id);
 
         $view = new View;
         $view->categories = $categories;
-
+        $view->blog = $blog;
         $view->display('blog/view.php');
 
         return true;

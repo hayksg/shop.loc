@@ -27,7 +27,7 @@ class UserController
             $email    = FL::clearStr($_POST['email']);
             $password = FL::clearStr($_POST['password']);
 
-            if (!FL::isName($name)) {
+            if (!FL::isValue($name)) {
                 $errors[] = 'Имя не может быть пустым';
             }
 
@@ -85,7 +85,7 @@ class UserController
                 $errors[] = 'Некорректный email';
             }
 
-            if (!FL::isName($password)) {
+            if (!FL::isValue($password)) {
                 $errors[] = 'Пароль не может быть пустым';
             }
 
@@ -93,7 +93,7 @@ class UserController
                 $user = UserModel::checkRegister($email, $password, $remember);
 
                 if ($user) {
-                    Session::createSession('user', $user);
+                    Session::createSession('user', $user, true);
 
                     FL::redirectTo('/cabinet');
                 } else {

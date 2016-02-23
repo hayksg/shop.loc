@@ -30,7 +30,11 @@
                         <div class="row">
                             <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
                                 <div class="signup-form">
-                                    <h2>Чтобы связаться с нами заполните пожалуйста форму</h2>
+                                    <h5>
+                                        <div>Наш телефон <i class="app-orange-color">+315 001 121 454</i></div>
+                                        <div>Чтобы связаться с нами заполните пожалуйста форму</div>
+                                    </h5>
+                                    <br>
                                     <?php if ($result) : ?>
                                         <h4 class="app-grey-color">Письмо отправлено!</h4>
                                     <?php else : ?>

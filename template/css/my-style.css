@@ -10,6 +10,10 @@ i {
     color: #696763;
 }
 
+.app-soft-grey-color {
+    color: #b2b2b2;
+}
+
 .app-red-color {
     color: #d00;
 }
@@ -84,17 +88,13 @@ i {
     margin: 0 0 20px;
 }
 
-.app-box {
-    padding: 0 30px;
+.app-ul li a:hover{
+    cursor: pointer;
+    text-decoration: underline;
 }
 
-.app-blog-img-box {
-    //width: 258px;
-    //width: 35%;
-    //height: 117px;
-    //height: 25%;
-    //display: inline-block;
-    //float: left;
+.app-box {
+    padding: 0 30px;
 }
 
 .app-blog-img-box img {
@@ -103,11 +103,8 @@ i {
 }
 
 .app-blog-description-box {
-
     padding: 0 20px;
-    //margin: 0 0 0 30px;
     height: 117px;
-    //display: inline-block;
     overflow: auto;
 }
 

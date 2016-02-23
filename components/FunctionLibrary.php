@@ -15,7 +15,7 @@ class FunctionLibrary
         return abs((int)$value);
     }
 
-    public static function isName($name)
+    public static function isValue($name)
     {
         return (strlen($name) > 0) ? true : false;
     }
@@ -23,6 +23,15 @@ class FunctionLibrary
     public static function isPassword($password)
     {
         return (strlen($password) > 5) ? true : false;
+    }
+
+    public static function isPhone($phone)
+    {
+        if (preg_match("/^[+]{1}[0-9 ]+$/", $phone)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public static function isEmail($email)

@@ -16,6 +16,9 @@ class CabinetController
         $categories = CategoryModel::getAllUsingColumns();
 
         $user = UserModel::getUser('user');
+        if (!$user) {
+            FL::redirectTo('/');
+        }
 
         $view = new View;
         $view->categories = $categories;
@@ -33,6 +36,9 @@ class CabinetController
         $errors   = [];
 
         $user = UserModel::getUser('user');
+        if (!$user) {
+            FL::redirectTo('/');
+        }
 
         $categories = CategoryModel::getAllUsingColumns();
 
@@ -40,7 +46,7 @@ class CabinetController
             $name     = FL::clearStr($_POST['name']);
             $password = FL::clearStr($_POST['password']);
 
-            if (!FL::isName($name)) {
+            if (!FL::isValue($name)) {
                 $errors[] = 'Имя не может быть пустым';
             }
 
@@ -72,5 +78,4 @@ class CabinetController
 
         return true;
     }
-
 }

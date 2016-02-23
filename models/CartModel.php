@@ -2,8 +2,12 @@
 
 namespace App\Models;
 
-class CartModel
+use App\Components\AbstractModel;
+
+class CartModel extends AbstractModel
 {
+    protected static $table = 'product_order';
+
     public static function addProduct($id)
     {
         $products = array();

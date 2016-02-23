@@ -27,7 +27,7 @@ class UserModel extends AbstractModel
             $email = FL::decrypted($encrypted, $str);
             return UserModel::getByColumn('email', $email);
         } else {
-            FL::redirectTo('/');
+            return false;
         }
     }
 

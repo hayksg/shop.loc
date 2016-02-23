@@ -18,5 +18,7 @@
 <script src="/template/js/jquery.prettyPhoto.js"></script>
 <script src="/template/js/main.js"></script>
 <script src="/template/js/app-script.js"></script>
+<script src="/template/js/jquery.cycle2.min.js"></script>
+<script src="/template/js/jquery.cycle2.carousel.min.js"></script>
 </body>
 </html>

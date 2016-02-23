@@ -16,10 +16,12 @@ class SiteController
 
         $categories = CategoryModel::getAllUsingColumns();
         $products   = ProductModel::getAllUsingColumns(true, $showProducts);
+        $recommended = ProductModel::getRecommended();
 
         $view = new View;
-        $view->categories = $categories;
-        $view->products   = $products;
+        $view->categories  = $categories;
+        $view->products    = $products;
+        $view->recommended = $recommended;
         $view->display('site/index.php');
 
         return true;
@@ -44,11 +46,11 @@ class SiteController
                 $errors[] = 'Некорректный email';
             }
 
-            if (!FL::isName($subject)) {
+            if (!FL::isValue($subject)) {
                 $errors[] = 'Тема не может быть пустым';
             }
 
-            if (!FL::isName($message)) {
+            if (!FL::isValue($message)) {
                 $errors[] = 'Сообщение не может быть пустым';
             }
 

@@ -4,12 +4,15 @@ namespace App\Components;
 
 class Session
 {
-    public static function getSession($sessionName)
+    public static function getSession($sessionName, $delete = false)
     {
         if (isset($_SESSION[$sessionName])) {
-            return $_SESSION[$sessionName];
-        } else {
-            return false;
+            $result =  $_SESSION[$sessionName];
+            if ($delete) {
+                self::deleteSession($sessionName);
+            }
+
+            return $result;
         }
     }
 
@@ -22,10 +25,14 @@ class Session
         }
     }
 
-    public static function createSession($key, $value)
+    public static function createSession($key, $value, $serialize = false)
     {
-        $value = serialize($value);
-        $_SESSION[$key] = $value;
+        if ($serialize) {
+            $value = serialize($value);
+            $_SESSION[$key] = $value;
+        } else {
+            $_SESSION[$key] = $value;
+        }
     }
 
     public static function deleteSession($key)
