@@ -26,7 +26,7 @@ abstract class AbstractModel
         return isset($this->data[$key]);
     }
 
-    public static function getAll($stringIds = false)
+    public static function getAll($stringIds = false, $asc = false)
     {
         $class = get_called_class();
 
@@ -38,7 +38,11 @@ abstract class AbstractModel
             $sql .= $stringIds;
             $sql .= ")";
         }
-        $sql .= " ORDER BY id DESC";
+        if ($asc) {
+            $sql .= " ORDER BY id ASC";
+        } else {
+            $sql .= " ORDER BY id DESC";
+        }
 
         $db = new DB;
         $db->setClassName($class);
@@ -176,7 +180,6 @@ abstract class AbstractModel
         }
         $sql .= " LIMIT 1";
 
-
         $db = new DB;
         $db->setClassName($class);
         $result = $db->query($sql, [':' . $column => $value]);
@@ -206,6 +209,28 @@ abstract class AbstractModel
 
         if ($result) {
             return $result[0];
+        } else {
+            return false;
+        }
+    }
+
+    public static function getAllByColumn($column, $value)
+    {
+        $class = get_called_class();
+
+        $sql  = "SELECT * ";
+        $sql .= "FROM ";
+        $sql .= static::$table;
+        $sql .= " WHERE ";
+        $sql .= $column;
+        $sql .= " = :value ";
+
+        $db = new DB;
+        $db->setClassName($class);
+        $result = $db->query($sql, [':value' => $value]);
+
+        if ($result) {
+            return $result;
         } else {
             return false;
         }
@@ -309,15 +334,17 @@ abstract class AbstractModel
         }
     }
 
-    public function delete()
+    public static function delete($id)
     {
+        $id = (int)$id;
+
         $sql  = "DELETE FROM ";
         $sql .= static::$table;
         $sql .= " WHERE id = :id ";
         $sql .= "LIMIT 1";
 
         $db = new DB;
-        $result = $db->execute($sql, [':id' => $this->data['id']]);
+        $result = $db->execute($sql, [':id' => $id]);
 
         if ($result) {
             return $result;

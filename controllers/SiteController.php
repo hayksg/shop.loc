@@ -16,7 +16,7 @@ class SiteController
 
         $categories = CategoryModel::getAllUsingColumns();
         $products   = ProductModel::getAllUsingColumns(true, $showProducts);
-        $recommended = ProductModel::getRecommended();
+        $recommended = ProductModel::getAllByColumn('is_recommended', '1');
 
         $view = new View;
         $view->categories  = $categories;

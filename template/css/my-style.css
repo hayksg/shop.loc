@@ -124,3 +124,24 @@ i {
 .app-block {
     padding: 0 15px;
 }
+
+.app-admin-category-table tr th + th + th{
+    width: 200px;
+}
+
+.app-admin-form .control-label {
+    text-align: left;
+    font-weight: normal;
+}
+
+.form-control[disabled] {
+    background: #fff;
+}
+
+.app-admin-form option {
+    padding: 7px 15px;
+}
+
+.app-admin-user-table tr th + th {
+    width: 150px;
+}

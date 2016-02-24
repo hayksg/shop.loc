@@ -22,6 +22,16 @@ return array(
     // for blog
     'blog/view/([0-9]+)' => 'blog/view/$1', // actionView in BlogController
     'blog' => 'blog/index', // actionIndex in BlogController
+    // for admin category
+    'admin/category/create' => 'adminCategory/create', // actionCreate in AdminCategoryController
+    'admin/category/edit/([0-9]+)' => 'adminCategory/edit/$1', // actionEdit in AdminCategoryController
+    'admin/category/delete/([0-9]+)' => 'adminCategory/delete/$1', // actionDelete in AdminCategoryController
+    'admin/category' => 'adminCategory/index', // actionIndex in AdminCategoryController
+    // for admin management
+    'admin/user/create' => 'adminUser/create', // actionCreate in AdminUserController
+    'admin/user/edit/([0-9]+)' => 'adminUser/edit/$1', // actionEdit in AdminUserController
+    'admin/user/delete/([0-9]+)' => 'adminUser/delete/$1', // actionDelete in AdminUserController
+    'admin/user' => 'adminUser/index', // actionIndex in AdminUserController
     // for admin
     'admin' => 'admin/index', // actionIndex in AdminController
     // for main
