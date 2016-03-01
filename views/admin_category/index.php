@@ -20,7 +20,7 @@
                     <table class="table table-bordered table-hover table-striped app-admin-category-table">
                         <tr>
                             <th>Id</th>
-                            <th>Name</th>
+                            <th>Название</th>
                             <th>Порядок расположения</th>
                             <th>Статус</th>
                             <th>Редактировать</th>

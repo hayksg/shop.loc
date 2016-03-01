@@ -5,7 +5,6 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
-                <br>
                 <h4>Добрый день: Администратор</h4>
                 <br>
                 <p>Вам доступны следующие возможности:</p>

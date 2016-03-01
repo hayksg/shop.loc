@@ -60,5 +60,9 @@ $(function(){
     var amount = price * count;
     $('.app-product-amount').html(amount);
 
+    ////////////////  Для input type file   ///////////////////////////////////
+
+    $(":file").jfilestyle({buttonText: "Выбрать"});
+
     ///////////////////////////////////////////////////////////////////////////
 });

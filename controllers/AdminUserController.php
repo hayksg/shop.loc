@@ -65,12 +65,6 @@ class AdminUserController extends AdminBase
         return true;
     }
 
-    public function actionEdit($id)
-    {
-        require_once(ROOT . '/views/admin_user/edit.php');
-        return true;
-    }
-
     public function actionDelete($id)
     {
         UserModel::delete($id);
