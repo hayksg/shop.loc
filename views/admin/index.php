@@ -9,6 +9,7 @@
                 <br>
                 <p>Вам доступны следующие возможности:</p>
                 <ul class="app-ul">
+                    <li><a href="/admin/view">Управление видом</a></li>
                     <li><a href="/admin/user">Управление админами</a></li>
                     <li><a href="/admin/category">Управление категориями</a></li>
                     <li><a href="/admin/product">Управление товарами</a></li>

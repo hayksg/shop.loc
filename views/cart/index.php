@@ -27,19 +27,19 @@
             <div class="col-sm-9 padding-right">
                 <div class="features_items"><!--features_items-->
                     <h2 class="title text-center">Корзина</h2>
-                    <?php if (empty($products)) : ?>
-
-                        <?php $message = \App\Components\Session::getSession('message', true); ?>
-                        <?php if ($message) : ?>
-                            <h4 class="app-title-example app-grey-color">
-                                <?= htmlentities($message) ?>
-                            </h4>
-                        <?php else : ?>
-                            <h4 class="app-title-example app-grey-color">Корзина пуста!</h4>
-                        <?php endif; ?>
-
-                    <?php else : ?>
                     <div class="app-block">
+                        <?php if (empty($products)) : ?>
+
+                            <?php $message = \App\Components\Session::getSession('message', true); ?>
+                            <?php if ($message) : ?>
+                                <h4 class="app-title-example app-grey-color">
+                                    <?= htmlentities($message) ?>
+                                </h4>
+                            <?php else : ?>
+                                <h4 class="app-title-example app-grey-color">Корзина пуста!</h4>
+                            <?php endif; ?>
+
+                        <?php else : ?>
                         <div class="table-responsive">
                             <table class="table table-bordered table-hover table-striped">
                                 <tr>

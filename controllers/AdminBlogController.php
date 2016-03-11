@@ -12,7 +12,7 @@ class AdminBlogController extends AdminBase
 {
     public function actionIndex()
     {
-        $blogs = BlogModel::getAll();
+        $blogs = BlogModel::getAll(false, true);
 
         $view = new View();
         $view->blogs = $blogs;
@@ -23,10 +23,7 @@ class AdminBlogController extends AdminBase
 
     public function actionCreate()
     {
-        $title       = '';
-        $description = '';
-        $content     = '';
-        $errors      = [];
+        $errors = [];
 
         if (isset($_POST['submit'])) {
             $title       = FL::clearStr($_POST['title']);
@@ -54,17 +51,19 @@ class AdminBlogController extends AdminBase
                 $id = $blog->save();
 
                 if ($id) {
-                    if ($_FILES['image']['name']) {
-                        $name = $_FILES['image']['name'];
+                    if ($_FILES['image']['name'] && $_FILES['image']['type'] == 'image/jpeg') {
+                        $fileName = 'blog' . $id . '.jpg';
                         $tmpName = $_FILES['image']['tmp_name'];
-                        $imagePath = '/images/blog/' . $id;
-                        $destination = ROOT . '/template/images/blog/' . $id;
-                        $result = move_uploaded_file($tmpName, $destination);
+                        if (is_uploaded_file($tmpName)) {
+                            $imagePath = '/images/blog/' . $fileName;
+                            $destination = ROOT . '/template/images/blog/' . $fileName;
+                            $result = move_uploaded_file($tmpName, $destination);
 
-                        if ($result) {
-                            $blog = BlogModel::getById($id);
-                            $blog->image = $imagePath;
-                            $blog->save();
+                            if ($result) {
+                                $blog = BlogModel::getById($id);
+                                $blog->image = $imagePath;
+                                $blog->save();
+                            }
                         }
                     }
                 }
@@ -74,24 +73,76 @@ class AdminBlogController extends AdminBase
         }
 
         $view = new View();
-        $view->title       = $title;
-        $view->description = $description;
-        $view->content     = $content;
         $view->errors      = $errors;
         $view->display('admin_blog/create.php');
 
         return true;
     }
 
-    public function actionEdit()
+    public function actionEdit($id)
     {
-        require_once(ROOT . '/views/admin_blog/edit.php');
+        $errors = [];
+
+        $blog = BlogModel::getById($id);
+
+        if (isset($_POST['submit'])) {
+            $title       = FL::clearStr($_POST['title']);
+            $description = FL::clearStr($_POST['description']);
+            $content     = FL::clearStr($_POST['content']);
+
+            if (!FL::isValue($title)) {
+                $errors[] = 'Название не может быть пустым';
+            }
+
+            if (!FL::isValue($description)) {
+                $errors[] = 'Описание не может быть пустым';
+            }
+
+            if (!FL::isValue($content)) {
+                $errors[] = 'Контент не может быть пустым';
+            }
+
+            if (empty($errors)) {
+                $blog->title       = $title;
+                $blog->description = $description;
+                $blog->content     = $content;
+                $res = $blog->save();
+
+                if ($res) {
+                    if ($_FILES['image']['name'] && $_FILES['image']['type'] == 'image/jpeg') {
+                        $fileName = 'blog' . $id . '.jpg';
+                        $tmpName = $_FILES['image']['tmp_name'];
+                        if (is_uploaded_file($tmpName)) {
+                            $imagePath = '/images/blog/' . $fileName;
+                            $destination = ROOT . '/template/images/blog/' . $fileName;
+                            $result = move_uploaded_file($tmpName, $destination);
+
+                            if ($result) {
+                                $blog->image = $imagePath;
+                                $blog->save();
+                            }
+                        }
+                    }
+                }
+
+                FL::redirectTo('/admin/blog');
+            }
+        }
+
+        $view = new View();
+        $view->blog   = $blog;
+        $view->errors = $errors;
+        $view->display('admin_blog/edit.php');
+
         return true;
     }
 
-    public function actionDelete()
+    public function actionDelete($id)
     {
-
+        $blog = BlogModel::delete($id);
+        if ($blog) {
+            FL::redirectTo('/admin/blog');
+        }
         return true;
     }
 }

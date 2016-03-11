@@ -41,6 +41,15 @@ return array(
     'admin/user/delete/([0-9]+)' => 'adminUser/delete/$1', // actionDelete in AdminUserController
     'admin/user' => 'adminUser/index', // actionIndex in AdminUserController
 
+    // for admin order
+    'admin/order/edit/([0-9]+)' => 'adminOrder/edit/$1', // actionEdit in AdminOrderController
+    'admin/order/delete/([0-9]+)' => 'adminOrder/delete/$1', // actionDelete in AdminOrderController
+    'admin/order/view/([0-9]+)' => 'adminOrder/view/$1', // actionView in AdminOrderController
+    'admin/order' => 'adminOrder/index', // actionIndex in AdminOrderController
+
+    // for admin view
+    'admin/view' => 'adminView/index', // actionIndex in AdminViewController
+
     // for admin
     'admin' => 'admin/index', // actionIndex in AdminController
 

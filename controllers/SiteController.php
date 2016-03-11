@@ -7,12 +7,12 @@ use App\Components\FunctionLibrary as FL;
 use App\Models\CategoryModel;
 use App\Models\ProductModel;
 
-
 class SiteController
 {
     public function actionIndex()
     {
-        $showProducts = 6;
+        $showProducts = FL::fileGetContents('product_count_main_page.txt');
+        if (!$showProducts) { $showProducts = 6; }
 
         $categories = CategoryModel::getAllUsingColumns();
         $products   = ProductModel::getAllUsingColumns(true, $showProducts);

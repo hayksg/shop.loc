@@ -15,14 +15,14 @@
                 <br>
                 <div class="row">
                     <div class="col-lg-6 col-md-8 col-sm-10 col-xs-10">
+                        <?php if (!empty($errors)) : ?>
+                            <ul class="app-ul">
+                                <?php foreach ($errors as $error) : ?>
+                                    <li class="app-red-color"><?= htmlentities($error); ?></li>
+                                <?php endforeach; ?>
+                            </ul>
+                        <?php endif; ?>
                         <form action="/admin/blog/create" method="post" class="form-horizontal" enctype="multipart/form-data">
-                            <?php if (!empty($errors)) : ?>
-                                <ul class="app-ul">
-                                    <?php foreach ($errors as $error) : ?>
-                                        <li class="app-red-color"><?= htmlentities($error); ?></li>
-                                    <?php endforeach; ?>
-                                </ul>
-                            <?php endif; ?>
                             <div class="form-group">
                                 <label class="control-label col-sm-3" for="idTitle">
                                     <span class="pull-left">Название:</span>
@@ -47,6 +47,7 @@
                                     <textarea name="content" class="form-control" id="idContent" rows="10"></textarea>
                                 </div>
                             </div>
+                            <p class="app-red-color">Внимание! Изображение поддерживается только в формате .jpg</p>
                             <div class="form-group">
                                 <label class="control-label col-sm-3">
                                     <span class="pull-left">Изображение:</span>

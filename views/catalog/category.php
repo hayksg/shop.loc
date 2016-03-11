@@ -28,7 +28,9 @@
                 <div class="features_items"><!--features_items-->
                     <h2 class="title text-center">Последние товары</h2>
                     <?php if (empty($products)) : ?>
+                    <div class="app-block">
                         <h4 class="app-title-example app-grey-color">Извините, на сегодня товаров в этой категории нету!</h4>
+                    </div>
                     <?php else : ?>
                         <?php foreach ($products as $product) : ?>
                             <div class="col-sm-4">

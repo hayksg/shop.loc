@@ -352,4 +352,11 @@ abstract class AbstractModel
             throw new ModelException('Произошла ошибка при удалении');
         }
     }
+
+    public static function filePutContents($path, $value)
+    {
+        if (is_file($path)) {
+            file_put_contents($path, $value);
+        }
+    }
 }

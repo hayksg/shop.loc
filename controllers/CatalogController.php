@@ -13,7 +13,8 @@ class CatalogController
 {
     public function actionIndex($page = 1)
     {
-        $limit = 9;
+        $limit = FL::fileGetContents('product_count_catalog_page.txt');
+        if (!$limit) { $limit = 9; }
 
         $categories = CategoryModel::getAllUsingColumns();
         $products   = ProductModel::getAllUsingColumns(true, $limit, $page);
@@ -35,7 +36,9 @@ class CatalogController
 
     public function actionCategory($categoryId, $page = 1)
     {
-        $limit = 9;
+        $limit = FL::fileGetContents('product_count_category_page.txt');
+        if (!$limit) { $limit = 9; }
+
         $page = (int)$page;
 
         $categories = CategoryModel::getAllUsingColumns();

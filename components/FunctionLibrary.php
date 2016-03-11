@@ -168,6 +168,41 @@ class FunctionLibrary
             $output = $result;
         }
 
+        return self::clearStr($output);
+    }
+
+    public static function fileGetContents($path)
+    {
+        $filePath = ROOT . '/config/' . $path;
+        if (is_file($filePath)) {
+            return file_get_contents($filePath);
+        }
+    }
+
+    public static function getStatus($value)
+    {
+        $output = '';
+
+        if ($value) {
+            switch ($value) {
+                case 1:
+                    $output = 'Новый заказ';
+                    break;
+                case 2:
+                    $output = 'В обработке';
+                    break;
+                case 3:
+                    $output = 'Доставляется';
+                    break;
+                case 4:
+                    $output = 'Доставлен';
+                    break;
+                default:
+                    $output = 'Такого статуса нет';
+                    break;
+            }
+        }
+
         return $output;
     }
 }
