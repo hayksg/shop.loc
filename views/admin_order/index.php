@@ -10,8 +10,10 @@
                     <li class="active">Управление заказом</li>
                 </ul>
                 <br>
-                <br>
-                <?php if (!empty($orders)) : ?>
+                <?php if (empty($orders)) : ?>
+                    <h4 class="app-grey-color">На сегодня заказов нету!</h4>
+                <?php else : ?>
+                    <br>
                     <div class="table-responsive">
                         <table class="table table-bordered table-hover table-striped">
                             <tr>
@@ -33,7 +35,11 @@
                                 <td><?= \App\Components\FunctionLibrary::getStatus($order->status) ?></td>
                                 <td><a href="/admin/order/view/<?= (int)$order->id ?>"><i class="fa fa-eye"></i></a></td>
                                 <td><a href="/admin/order/edit/<?= (int)$order->id ?>"><i class="fa fa-edit"></i></a></td>
-                                <td><a href="/admin/order/delete/<?= (int)$order->id ?>"><i class="fa fa-trash-o"></i></a></td>
+                                <td>
+                                    <a href="/admin/order/delete/<?= (int)$order->id ?>" onclick="return confirm('Вы уверены что хотите удалить заказ?')">
+                                        <i class="fa fa-trash-o"></i>
+                                    </a>
+                                </td>
                             </tr>
                         <?php endforeach; ?>
                         </table>

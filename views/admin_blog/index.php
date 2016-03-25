@@ -10,6 +10,13 @@
                         <li class="active">Управление блогом</li>
                     </ul>
                     <br>
+                    <?php if (empty($blogs)) : ?>
+                    <h4>Пока записей нет! Вы можете добавить их.</h4>
+                    <br>
+                    <div>
+                        <a href="/admin/blog/create" class="btn btn-info">Добавить блог</a>
+                    </div>
+                    <?php else : ?>
                     <div>
                         <a href="/admin/blog/create" class="btn btn-info">Добавить блог</a>
                     </div>
@@ -48,6 +55,7 @@
                             <?php endforeach; ?>
                         </table>
                     </div>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>

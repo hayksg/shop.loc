@@ -15,6 +15,11 @@ class FunctionLibrary
         return abs((int)$value);
     }
 
+    public static function clearFloat($value)
+    {
+        return (float)($value);
+    }
+
     public static function isValue($name)
     {
         return (strlen($name) > 0) ? true : false;

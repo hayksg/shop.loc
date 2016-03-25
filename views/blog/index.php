@@ -27,6 +27,9 @@
                 <div class="col-sm-9 padding-right">
                     <div class="features_items"><!--features_items-->
                         <h2 class="title text-center">Блог</h2>
+                        <?php if (empty($blogs)) : ?>
+                        <h4 class="app-block app-grey-color">Пока записей нет!</h4>
+                        <?php else : ?>
                         <div class="row">
                             <div class="col-sm-12 app-box">
                             <?php foreach ($blogs as $blog) : ?>
@@ -50,6 +53,7 @@
                             <?php endforeach; ?>
                             </div>
                         </div>
+                        <?php endif; ?>
                     </div><!--features_items-->
                 </div>
             </div>

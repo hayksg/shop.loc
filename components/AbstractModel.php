@@ -50,7 +50,7 @@ abstract class AbstractModel
         if ($result) {
             return $result;
         } else {
-            throw new ModelException('Ошибка базы данных');
+            return false;
         }
     }
 
@@ -357,6 +357,21 @@ abstract class AbstractModel
     {
         if (is_file($path)) {
             file_put_contents($path, $value);
+        }
+    }
+
+    public static function amountProductsPriceInCart($productsKeysArray, $products)
+    {
+        if (is_array($productsKeysArray) && is_array($products)) {
+            $price = 0;
+            foreach ($products as $product) {
+                if (array_key_exists($product->id, $productsKeysArray)) {
+                    $price += $productsKeysArray[$product->id] * $product->price;
+                } else {
+                    return false;
+                }
+            }
+            return $price;
         }
     }
 }

@@ -23,6 +23,14 @@ return array(
     'cart/order' => 'cart/order', // actionOrder in CartController
     'cart' => 'cart/index', // actionIndex in CartController
 
+    // for admin product
+    'admin/product/create' => 'adminProduct/create', // actionCreate in AdminProductController
+    'admin/product/edit/([0-9]+)' => 'adminProduct/edit/$1', // actionEdit in AdminProductController
+    'admin/product/delete/([0-9]+)' => 'adminProduct/delete/$1', // actionDelete in AdminProductController
+    'admin/product/page-([0-9]+)' => 'adminProduct/index/$1', // actionIndex in AdminProductController
+    'admin/product' => 'adminProduct/index', // actionIndex in AdminProductController
+
+
     // for admin blog
     'admin/blog/create' => 'adminBlog/create' , // actionCreate in AdminBlogController
     'admin/blog/edit/([0-9]+)' => 'adminBlog/edit/$1' , // actionEdit in AdminBlogController
